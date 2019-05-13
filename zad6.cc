@@ -19,10 +19,11 @@ int main () {
     // do odrebnych zadan (task) ale tak
     // zeby rownolegle wykonanie bylo zabezpieczone
     // przed data race i wynik koncowy poprawny
-
+#pragma omp single
     while ( it != l.end() ) {
-       buf += *it; // to wyslij do task i zabezpiecz
-
+#pragma omp task       
+buf += *it; // to wyslij do task i zabezpiecz
+#pragma omp taskwait
        ++it;
     }
 

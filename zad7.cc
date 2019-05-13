@@ -7,7 +7,8 @@ int main () {
 
 string buf;
 char c = 'a';
-
+omp_lock_t writelock;
+omp_init_lock(&writelock);
 // Stworz i zainicjalizuj obiekt typu 
 // omp_lock_t
 // Nastepnie zabezpiecz za jego pomoca
@@ -19,19 +20,21 @@ char c = 'a';
     #pragma omp sections nowait
     {
        #pragma omp section
-       {
+       {omp_set_lock(&writelock);
           buf += c++;
           buf += c++;
+omp_unset_lock(&writelock);
        }
 
        #pragma omp section
-       {
+       {omp_set_lock(&writelock);
           buf += c++;
           buf += c++;
+omp_unset_lock(&writelock);
        }
     }  
 }  
-
+omp_destroy_lock(&writelock);
 cout << buf << endl;
 // abcd
 }

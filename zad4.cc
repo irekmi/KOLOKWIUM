@@ -18,7 +18,7 @@ int main () {
         plus = plus + j;
         mult = mult * j;
     }
-
+#pragma omp barrier
     cout << " plus = " << plus << "  mult = " << mult << endl;
 
 }

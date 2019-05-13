@@ -11,8 +11,9 @@ int main () {
 // a takze zabezpiecz w srodku operacje na wielkosci wspoldzielonej
 // Wynik koncowy powinien byc: 400
 
-  #pragma omp parallel num_threads(4)
+  #pragma omp parallel num_threads(4) firstprivate(c)
   {
+#pragma omp lastprivate(v)
       while (c--) {
         ++v;
       }

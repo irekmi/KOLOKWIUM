@@ -18,7 +18,7 @@ int main () {
     // pomiedzy watki i zostaw w kodzie taka, ktora daje
     // najkrotszy czas obliczen
 
-  #pragma omp parallel for num_threads(4)
+  #pragma omp parallel for num_threads(4) schedule(static,1)
       for (int i=0; i<16; ++i) fun(i);
       
     auto a2 = omp_get_wtime();

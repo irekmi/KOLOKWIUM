@@ -15,9 +15,11 @@ int main () {
 
 #pragma omp parallel num_threads(4)
 {
-    while ( getline( plik, tmp ) ) {
+#pragma omp critical   
+ while ( getline( plik, tmp ) ) {
         buf += tmp + '\n';
     }
+
 }
 
 cout << buf << endl;

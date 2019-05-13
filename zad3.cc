@@ -13,10 +13,10 @@ int main () {
    // odpowiednie klauzule). Ponadto "splaszcz" potrojne
    // petle rowniez za pomoca odpowiedniej klauzuli.
 
-   #pragma omp parallel for num_threads(4) 
+   #pragma omp parallel for schedule(static,1) collapse(3)  num_threads(4)
    for (i = 0; i < 10; ++i)
      for (j = 0; j < 10; ++j)
-       for (k = 0; k < 10; ++k)
+     for (k = 0; k < 10; ++k)
        {
            #pragma omp atomic
            ++suma;
